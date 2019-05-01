@@ -43,7 +43,8 @@ namespace SocketIO
 		#region Public Properties
 
 
-		public string url = "ws://192.168.43.134:8182/socket.io/?EIO=4&transport=websocket";
+		//public string url = "ws://192.168.43.134:8182/socket.io/?EIO=4&transport=websocket";
+		public string url = "ws://127.0.0.1:7777/socket.io/?EIO=4&transport=websocket";
 
 		public bool autoConnect = true;
 		public int reconnectDelay = 5;
@@ -91,7 +92,7 @@ namespace SocketIO
 
 		#region Unity interface
 
-		public void Awake()
+		public virtual void Awake()
 		{
 			encoder = new Encoder();
 			decoder = new Decoder();
