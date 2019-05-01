@@ -1,4 +1,5 @@
 ﻿using SocketIO;
+using UnityEngine;
 
 namespace MultiplayerSystem
 {
@@ -9,6 +10,7 @@ namespace MultiplayerSystem
         public OnMoveForwardSignal(SocketIOEvent socketIOEvent)
         {
             this.socketIOEvent = socketIOEvent;
+            Debug.Log("OnmoveforwardSignal called");
         }
     }
 }
