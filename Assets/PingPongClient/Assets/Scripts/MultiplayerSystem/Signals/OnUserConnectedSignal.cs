@@ -10,7 +10,7 @@ namespace MultiplayerSystem
         public OnUserConnectedSignal(SocketIOEvent socketIOEvent)
         {
             this.socketIOEvent = socketIOEvent;
-            Debug.Log("OnUserConnectedSignal called");
+            Debug.Log("OnUserConnectedSignal called" +socketIOEvent.data);
         }
         public string GetPlayerID()
         {
@@ -21,7 +21,11 @@ namespace MultiplayerSystem
         public Vector3 GetSpawnPosition()
         {
             Vector3 pos = Vector3.zero;
-            return pos;
+            JSONObject positionObj=socketIOEvent.data.GetField("playerPosition");
+            positionObj.GetField(ref pos.x, "x");
+            positionObj.GetField(ref pos.y, "y");
+            positionObj.GetField(ref pos.z, "z");
+            return pos; 
         }
     }
 }

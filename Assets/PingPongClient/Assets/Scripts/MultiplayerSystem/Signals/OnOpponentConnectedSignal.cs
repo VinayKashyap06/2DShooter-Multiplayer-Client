@@ -20,7 +20,11 @@ namespace MultiplayerSystem
         }
         public Vector3 GetSpawnPosition()
         {
-            Vector3 pos = new Vector3(2,0,0);
+            Vector3 pos = Vector3.zero;
+            JSONObject positionObj = socketIOEvent.data.GetField("opponentPosition");
+            positionObj.GetField(ref pos.x, "x");
+            positionObj.GetField(ref pos.y, "y");
+            positionObj.GetField(ref pos.z, "z");
             return pos;
         }
     }

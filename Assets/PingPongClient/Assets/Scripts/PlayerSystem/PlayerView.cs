@@ -9,17 +9,18 @@ namespace PlayerSystem
 {
     public class PlayerView : MonoBehaviour
     {
-        //[Inject]
-        //private SignalBus signalBus;
-       
-        private void Start()
+        
+        private SignalBus signalBus;
+      
+        public void SetSignalBus(SignalBus signalBus)
         {
-           // signalBus.Subscribe<OnMoveForwardSignal>(OnMoveForward);
+            this.signalBus = signalBus;
+            signalBus.Subscribe<OnMoveForwardSignal>(OnMoveForward);            
         }
 
-        //private void OnMoveForward()
-        //{
-        //    transform.position += new Vector3(0, 0, 1)*Time.deltaTime*2f;
-        //}
+        private void OnMoveForward(OnMoveForwardSignal onMoveForwardSignal)
+        {            
+            transform.position = Vector3.Lerp(transform.position, onMoveForwardSignal.GetNewPosition(), 1);        
+        }
     }
 }

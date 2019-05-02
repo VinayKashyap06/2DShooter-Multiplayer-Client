@@ -28,6 +28,7 @@ namespace PlayerSystem
         {
             IPlayerController remotePlayerController;
             remotePlayerController = new RemotePlayerController(onOpponentConnectedSignal.GetPlayerID(),this);
+            remotePlayerController.SetSignalBus(signalBus);
             remotePlayerController.SpawnView(opponentScriptableObj.playerView, onOpponentConnectedSignal.GetSpawnPosition());
             remotePlayerControllerList.Add(remotePlayerController);
         }
@@ -36,6 +37,7 @@ namespace PlayerSystem
         {
             localPlayerID=onUserConnectedSignal.GetPlayerID();
             localPlayerController = new LocalPlayerController(localPlayerID, this);
+            localPlayerController.SetSignalBus(signalBus);
             localPlayerController.SpawnView(playerScriptableObj.playerView, onUserConnectedSignal.GetSpawnPosition());
         }
     }

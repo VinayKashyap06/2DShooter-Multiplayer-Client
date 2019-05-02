@@ -19,8 +19,8 @@ namespace PlayerSystem
         public override void SpawnView(PlayerView playerView, Vector3 position)
         {
             thisPlayer = GameObject.Instantiate(playerView.gameObject, position, Quaternion.identity);
-            thisPlayerView = playerView;
-            
+            thisPlayerView = thisPlayer.GetComponent<PlayerView>();
+            thisPlayerView.SetSignalBus(signalBus);
         }
 
         public override string GetID()
