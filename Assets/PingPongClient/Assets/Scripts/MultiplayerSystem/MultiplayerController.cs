@@ -20,12 +20,13 @@ namespace MultiplayerSystem
         private void SetupEvents()
         {
             On(ServerEvents.ON_MOVE_FORWARD, OnMoveForward);
+            On(ServerEvents.ON_USER_CONNECTED, OnUserConnected);
+            On(ServerEvents.ON_OPPONENT_CONNECTED, OnOpponentConnected);
         }
 
-        private void OnMoveForward(SocketIOEvent socketIOEvent)
-        {
-            signalBus.TryFire(new OnMoveForwardSignal(socketIOEvent));
-        }
+        private void OnOpponentConnected(SocketIOEvent socketIOEvent)=> signalBus.TryFire(new OnOpponentConnectedSignal(socketIOEvent));
+        private void OnUserConnected(SocketIOEvent socketIOEvent)=>    signalBus.TryFire(new OnUserConnectedSignal(socketIOEvent));        
+        private void OnMoveForward(SocketIOEvent socketIOEvent) =>   signalBus.TryFire(new OnMoveForwardSignal(socketIOEvent));        
 
         public override void Update()
         {

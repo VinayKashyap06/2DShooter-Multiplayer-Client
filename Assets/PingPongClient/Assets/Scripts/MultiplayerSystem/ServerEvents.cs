@@ -10,6 +10,7 @@ namespace MultiplayerSystem
     {
         #region EventsToListen
         public static string ON_USER_CONNECTED = "onUserConnected";
+        public static string ON_OPPONENT_CONNECTED = "onOpponentConnected";
         public static string ON_MOVE_FORWARD = "onMoveForward";
         public static string ON_MOVE_BACKWARD = "onMoveBackward";
         public static string ON_MOVE_LEFT = "onMoveLeft";
