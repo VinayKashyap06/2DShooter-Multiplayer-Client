@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace MultiplayerSystem
 {
-    public class OnMoveForwardSignal
+    public class OnMoveBackwardSignal
     {
         private SocketIOEvent socketIOEvent;
 
-        public OnMoveForwardSignal(SocketIOEvent socketIOEvent)
+        public OnMoveBackwardSignal(SocketIOEvent socketIOEvent)
         {
             this.socketIOEvent = socketIOEvent;
             Debug.Log("OnmoveforwardSignal called"+socketIOEvent.data);

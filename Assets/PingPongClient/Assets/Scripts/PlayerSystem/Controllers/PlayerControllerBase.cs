@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MultiplayerSystem;
 using UnityEngine;
 using Zenject;
 
@@ -16,12 +12,12 @@ namespace PlayerSystem
             return "";
         }
 
-        public void MoveBackward()
+        public virtual void MoveBackward(Vector3 position)
         {
             
         }
 
-        public void MoveForward()
+        public virtual void MoveForward(Vector3 position)
         {
            
         }
@@ -29,11 +25,21 @@ namespace PlayerSystem
         public void SetSignalBus(SignalBus signalBus)
         {
             this.signalBus = signalBus;
+            //signalBus.Subscribe<OnMoveForwardSignal>(OnMoveForward);
+            //signalBus.Subscribe<OnMoveBackwardSignal>(OnMoveBackward);
         }
 
         public virtual void SpawnView(PlayerView playerView,Vector3 position)
         {
             
         }
+        //protected virtual void OnMoveForward(OnMoveForwardSignal onMoveForwardSignal)
+        //{
+
+        //}
+        //protected virtual void OnMoveBackward(OnMoveBackwardSignal onMoveBackwardSignal)
+        //{
+
+        //}
     }
 }

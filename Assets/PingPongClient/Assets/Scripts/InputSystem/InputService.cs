@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Zenject;
 using UnityEngine;
+using PlayerSystem;
 
 namespace InputSystem
 {
@@ -17,6 +18,10 @@ namespace InputSystem
             if (Input.GetAxis("Vertical") > 0f)
             {
                 signalBus.TryFire(new MoveForwardSignal());
+            }
+            else if(Input.GetAxis("Vertical") < 0f)
+            {
+                signalBus.TryFire(new MoveBackwardSignal());
             }
         }
     }

@@ -9,18 +9,15 @@ namespace PlayerSystem
 {
     public class PlayerView : MonoBehaviour
     {
-        
-        private SignalBus signalBus;
-      
-        public void SetSignalBus(SignalBus signalBus)
-        {
-            this.signalBus = signalBus;
-            signalBus.Subscribe<OnMoveForwardSignal>(OnMoveForward);            
-        }
+          
 
-        private void OnMoveForward(OnMoveForwardSignal onMoveForwardSignal)
+        public void OnMoveForward(Vector3 newPosition)
         {            
-            transform.position = Vector3.Lerp(transform.position, onMoveForwardSignal.GetNewPosition(), 1);        
+            transform.position = Vector3.Lerp(transform.position, newPosition, 1);        
+        }
+        public void OnMoveBackward(Vector3 newPosition)
+        {            
+            transform.position = Vector3.Lerp(transform.position, newPosition, 1);        
         }
     }
 }

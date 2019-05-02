@@ -1,4 +1,4 @@
-﻿namespace InputSystem
+﻿namespace PlayerSystem
 {
     public class MoveForwardSignal
     {

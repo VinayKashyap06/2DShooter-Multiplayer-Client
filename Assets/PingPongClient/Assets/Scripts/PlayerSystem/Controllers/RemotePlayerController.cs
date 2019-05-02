@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MultiplayerSystem;
 using UnityEngine;
 
 namespace PlayerSystem
@@ -23,11 +19,21 @@ namespace PlayerSystem
         {
             thisPlayer = GameObject.Instantiate(playerView.gameObject, position, Quaternion.identity);
             thisPlayerView = thisPlayer.GetComponent<PlayerView>();
-            thisPlayerView.SetSignalBus(signalBus);
+            Debug.Log("thisplayerView", thisPlayerView.gameObject);
         }
         public override string GetID()
         {
             return playerID;
         }
+        public override void MoveBackward(Vector3 position)
+        {
+            Debug.Log("remote move back");
+            thisPlayerView.OnMoveBackward(position);
+        }
+        public override void MoveForward(Vector3 position)
+        {
+            Debug.Log("remote move forward");
+            thisPlayerView.OnMoveForward(position);
+        }      
     }
 }

@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5547a55631f67641acf14afa07b1831, type: 3}
   m_Name: Scriptable Settings
   m_EditorClassIdentifier: 
+  playerScriptableObject: {fileID: 11400000, guid: 3d6727fd9d8717b459bf923e90d483cd,
+    type: 2}
+  opponentScriptableObject: {fileID: 11400000, guid: f7fdb655789cc314d807a33c2f2a528b,
+    type: 2}

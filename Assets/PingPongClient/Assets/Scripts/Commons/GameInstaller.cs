@@ -14,7 +14,9 @@ namespace Commons
             SignalBusInstaller.Install(Container);
             //Declare Signals
             Container.DeclareSignal<MoveForwardSignal>();
+            Container.DeclareSignal<MoveBackwardSignal>();
             Container.DeclareSignal<OnMoveForwardSignal>();
+            Container.DeclareSignal<OnMoveBackwardSignal>();
             Container.DeclareSignal<OnOpponentConnectedSignal>();
             Container.DeclareSignal<OnUserConnectedSignal>();
 

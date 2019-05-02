@@ -4,8 +4,8 @@ namespace PlayerSystem
 {
     public interface IPlayerController
     {
-        void MoveForward();
-        void MoveBackward();
+        void MoveForward(Vector3 position);
+        void MoveBackward(Vector3 position);
         void SpawnView(PlayerView playerView, Vector3 position);
         string GetID();
         void SetSignalBus(SignalBus signalBus);

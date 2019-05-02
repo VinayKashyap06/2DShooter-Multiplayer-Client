@@ -20,6 +20,9 @@ namespace MultiplayerSystem
 
         #region EventsToEmit
         public static string MOVE_FORWARD = "moveForward";
+        public static string MOVE_BACKWARD = "moveBackward";
+        public static string MOVE_LEFT = "moveLeft";
+        public static string MOVE_RIGHT= "moveRight";
         #endregion
     }
 }
