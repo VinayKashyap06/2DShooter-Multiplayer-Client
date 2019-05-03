@@ -4,6 +4,7 @@ using Zenject;
 using MultiplayerSystem;
 using InputSystem;
 using PlayerSystem;
+using FrameSaveSystem;
 
 namespace Commons
 {
@@ -32,10 +33,26 @@ namespace Commons
                 AsSingle().
                 NonLazy();
 
+            Container.Bind(typeof(IFrameService), typeof(IFixedTickable)).
+                To<FrameService>().
+                AsSingle().
+                NonLazy();
+
             Container.Bind<IPlayerService>().
                 To<PlayerService>().
                 AsSingle().
                 NonLazy();
+
+            Container.Bind<IWorldSaveService>().
+                To<WorldSaveService>().
+                AsSingle().
+                NonLazy();
+
+            //Container.Bind(typeof(SignalFactory)).
+            //    To(typeof(SignalFactory)).
+            //    AsSingle().
+            //    NonLazy();
+
         }
     }
 }

@@ -5,23 +5,23 @@ namespace MultiplayerSystem
 {
     public class OnOpponentConnectedSignal
     {
-        private SocketIOEvent socketIOEvent;
+        private JSONObject data;
 
-        public OnOpponentConnectedSignal(SocketIOEvent socketIOEvent)
+        public OnOpponentConnectedSignal(JSONObject data)
         {
-            this.socketIOEvent = socketIOEvent;
+            this.data = data;
             Debug.Log("OnUserConnectedSignal called");
         }
         public string GetPlayerID()
         {
             string id = "";
-            socketIOEvent.data.GetField(ref id, "opponentID");
+            data.GetField(ref id, "opponentID");
             return id;
         }
         public Vector3 GetSpawnPosition()
         {
             Vector3 pos = Vector3.zero;
-            JSONObject positionObj = socketIOEvent.data.GetField("opponentPosition");
+            JSONObject positionObj = data.GetField("opponentPosition");
             positionObj.GetField(ref pos.x, "x");
             positionObj.GetField(ref pos.y, "y");
             positionObj.GetField(ref pos.z, "z");

@@ -24,22 +24,12 @@ namespace PlayerSystem
 
         public void SetSignalBus(SignalBus signalBus)
         {
-            this.signalBus = signalBus;
-            //signalBus.Subscribe<OnMoveForwardSignal>(OnMoveForward);
-            //signalBus.Subscribe<OnMoveBackwardSignal>(OnMoveBackward);
+            this.signalBus = signalBus;            
         }
 
         public virtual void SpawnView(PlayerView playerView,Vector3 position)
         {
             
         }
-        //protected virtual void OnMoveForward(OnMoveForwardSignal onMoveForwardSignal)
-        //{
-
-        //}
-        //protected virtual void OnMoveBackward(OnMoveBackwardSignal onMoveBackwardSignal)
-        //{
-
-        //}
     }
 }

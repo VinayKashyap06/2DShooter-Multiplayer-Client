@@ -6,17 +6,17 @@ namespace MultiplayerSystem
 {
     public class OnMoveForwardSignal
     {
-        private SocketIOEvent socketIOEvent;
+        private JSONObject data;
 
-        public OnMoveForwardSignal(SocketIOEvent socketIOEvent)
+        public OnMoveForwardSignal(JSONObject data)
         {
-            this.socketIOEvent = socketIOEvent;
-            Debug.Log("OnmoveforwardSignal called"+socketIOEvent.data);
+            this.data = data;
+            Debug.Log("OnmoveforwardSignal called"+data);
         }
         public Vector3 GetNewPosition()
         {
             Vector3 pos = Vector3.zero;
-            JSONObject positionObj = socketIOEvent.data.GetField("newPosition");
+            JSONObject positionObj = data.GetField("newPosition");
             positionObj.GetField(ref pos.x, "x");
             positionObj.GetField(ref pos.y, "y");
             positionObj.GetField(ref pos.z, "z");
@@ -26,7 +26,7 @@ namespace MultiplayerSystem
         public string GetPlayerID()
         {
             string id = "";
-            socketIOEvent.data.GetField(ref id, "playerID");
+            data.GetField(ref id, "playerID");
             return id;
         }
     }

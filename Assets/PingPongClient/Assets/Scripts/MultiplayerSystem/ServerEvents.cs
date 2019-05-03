@@ -9,20 +9,21 @@ namespace MultiplayerSystem
     public static class ServerEvents
     {
         #region EventsToListen
-        public static string ON_USER_CONNECTED = "onUserConnected";
-        public static string ON_OPPONENT_CONNECTED = "onOpponentConnected";
-        public static string ON_MOVE_FORWARD = "onMoveForward";
-        public static string ON_MOVE_BACKWARD = "onMoveBackward";
-        public static string ON_MOVE_LEFT = "onMoveLeft";
-        public static string ON_MOVE_RIGHT = "onMoveRight";
-        public static string ON_PLAYER_JUMP = "onPlayerJump";
+        public const string ON_USER_CONNECTED = "onUserConnected";
+        public const string ON_OPPONENT_CONNECTED = "onOpponentConnected";
+        public const string ON_MOVE_FORWARD = "onMoveForward";
+        public const string ON_MOVE_BACKWARD = "onMoveBackward";
+        public const string ON_MOVE_LEFT = "onMoveLeft";
+        public const string ON_MOVE_RIGHT = "onMoveRight";
+        public const string ON_PLAYER_JUMP = "onPlayerJump";
+        public const string ON_ADD_FRAME_DATA = "onAddFrameData";
         #endregion
 
         #region EventsToEmit
-        public static string MOVE_FORWARD = "moveForward";
-        public static string MOVE_BACKWARD = "moveBackward";
-        public static string MOVE_LEFT = "moveLeft";
-        public static string MOVE_RIGHT= "moveRight";
+        public const string MOVE_FORWARD = "moveForward";
+        public const string MOVE_BACKWARD = "moveBackward";
+        public const string MOVE_LEFT = "moveLeft";
+        public const string MOVE_RIGHT= "moveRight";
         #endregion
     }
 }

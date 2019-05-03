@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Commons;
 using Zenject;
 
 namespace MultiplayerSystem
@@ -12,6 +13,7 @@ namespace MultiplayerSystem
         public MultiplayerService(SignalBus signalBus)
         {
             this.signalBus = signalBus;
+            SignalFactory.signalBus = signalBus;
         }
 
         public void Initialize()
