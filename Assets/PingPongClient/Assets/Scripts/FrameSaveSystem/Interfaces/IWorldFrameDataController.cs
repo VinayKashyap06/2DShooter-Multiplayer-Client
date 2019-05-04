@@ -4,5 +4,6 @@
     {
         void Execute();     
         void SetupControllerData(JSONObject data);
+        void MergeToPreviousData(JSONObject data);
     }
 }

@@ -9,5 +9,6 @@ namespace FrameSaveSystem
     {
         void Execute();
         void SetupDataToExecute(JSONObject data);
+        void MergeToPreviousData(JSONObject data);
     }
 }

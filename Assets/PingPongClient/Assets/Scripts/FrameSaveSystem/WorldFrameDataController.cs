@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace FrameSaveSystem
 {
@@ -14,6 +15,7 @@ namespace FrameSaveSystem
 
         public void Execute()
         {
+            Debug.Log("Execute called for World frame controller");
             List<string> playerKeys = new List<string>();
             playerKeys = playerDataControllers.Keys.ToList();
             List<string> bulletKeys = new List<string>();
@@ -22,11 +24,20 @@ namespace FrameSaveSystem
             {
                 playerDataControllers[playerKeys[i]].Execute();
             }
-            for (int j = 0; j < bulletKeys.Count; j++)
+            //for (int j = 0; j < bulletKeys.Count; j++)
+            //{
+            //    bulletDataControllers[bulletKeys[j]].Execute();
+            //}
+        }
+
+        public void MergeToPreviousData(JSONObject data)
+        {
+            Debug.Log("merge to previous daata called " + data);
+            foreach(PlayerDataController item in playerDataControllers.Values.ToList())
             {
-                bulletDataControllers[bulletKeys[j]].Execute();
+                item.MergeToPreviousData(data);
             }
-        }  
+        }
 
         public void SetupControllerData(JSONObject data)
         {

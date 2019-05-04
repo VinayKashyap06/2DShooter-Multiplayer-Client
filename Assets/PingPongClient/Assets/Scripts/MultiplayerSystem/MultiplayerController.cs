@@ -21,9 +21,7 @@ namespace MultiplayerSystem
         }
 
         private void SetupEvents()
-        {
-        //    On(ServerEvents.ON_MOVE_FORWARD, OnMoveForward);
-        //    On(ServerEvents.ON_MOVE_BACKWARD, OnMoveBackward);
+        {        
             On(ServerEvents.ON_USER_CONNECTED, OnUserConnected);
             On(ServerEvents.ON_OPPONENT_CONNECTED, OnOpponentConnected);
             On(ServerEvents.ON_ADD_FRAME_DATA, OnAddFrameData);
@@ -34,6 +32,7 @@ namespace MultiplayerSystem
            // Debug.Log("incoming data" + socketIOEvent.data);
             int frameNo = 0;
             socketIOEvent.data.GetField(ref frameNo,"frameNo");
+//            Debug.Log("frame no received" +frameNo);
             worldSaveService.AddFrameData(frameNo, socketIOEvent.data);
         }
 
@@ -45,8 +44,13 @@ namespace MultiplayerSystem
         public void SetSignalBus(SignalBus signalBus)
         {
             this.signalBus = signalBus;
-            signalBus.Subscribe<MoveForwardSignal>(() => SendDataToServer(ServerEvents.MOVE_FORWARD, new JSONObject()));
+            signalBus.Subscribe<MoveForwardSignal>(MoveForward);
             signalBus.Subscribe<MoveBackwardSignal>(()=> SendDataToServer(ServerEvents.MOVE_BACKWARD, new JSONObject()));
+        }
+        public void SetupServices(IWorldSaveService worldSaveService, IFrameService frameService)
+        {
+            this.worldSaveService = worldSaveService;
+            this.frameService = frameService;
         }
 
         private void SendDataToServer(string eventName, JSONObject data)
@@ -57,6 +61,7 @@ namespace MultiplayerSystem
         {
             JSONObject dataToSend = new JSONObject();
             dataToSend.AddField("frameNo",frameService.GetFrameCount());
+            Debug.Log("sending data "+ dataToSend);
             SendDataToServer(ServerEvents.MOVE_FORWARD, dataToSend);
         }
     }

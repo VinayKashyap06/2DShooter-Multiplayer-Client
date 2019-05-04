@@ -8,19 +8,33 @@ namespace FrameSaveSystem
     {
 
         private Dictionary<int, IWorldFrameDataController> frameDataDict = new Dictionary<int, IWorldFrameDataController>();      
-        public void ExecuteFrame(int frameCount)
+        public async void ExecuteFrame(int frameCount)
         {
+            Debug.Log("<color=blue>Executing frame for dictionary</color>"+frameCount);
+        
             if (frameDataDict.ContainsKey(frameCount))
             {
+                //execute if key present.
                 frameDataDict[frameCount].Execute();
+                frameDataDict.Remove(frameCount);
             }
         }
 
-        public void AddFrameData(int frameNo, JSONObject data)
+        public async void AddFrameData(int frameNo, JSONObject data)
         {
-            IWorldFrameDataController worldFrameDataController = new WorldFrameDataController();            
-            worldFrameDataController.SetupControllerData(data);
-            frameDataDict.Add(frameNo, worldFrameDataController);
+            
+            if (frameDataDict.ContainsKey(frameNo))
+            {
+                frameDataDict[frameNo].MergeToPreviousData(data);
+            }
+            else
+            {
+                IWorldFrameDataController worldFrameDataController = new WorldFrameDataController();
+                worldFrameDataController.SetupControllerData(data);
+                Debug.Log("<color=green>Adding keys</color>" + frameNo);
+                frameDataDict.Add(frameNo, worldFrameDataController);
+            }
+          //  Debug.Log("Setting up controllers for frame");
         }
     }
 }

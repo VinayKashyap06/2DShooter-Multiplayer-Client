@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using Commons;
+using System;
 
 namespace FrameSaveSystem
 {
     public class PlayerDataController :IPlayerDataController
     {
         private JSONObject dataToExecute = new JSONObject();
-        private string eventToExecute;
+        private string eventToExecute="";
         public PlayerDataController()
         {
 
@@ -17,6 +18,7 @@ namespace FrameSaveSystem
 
         public void Execute()
         {
+            Debug.Log("execute called for player data controller");
             SignalFactory.FireSignal(eventToExecute, dataToExecute);
         }
 
@@ -25,6 +27,13 @@ namespace FrameSaveSystem
             dataToExecute = data;
             
             data.GetField(ref eventToExecute,"eventName");
+        }
+
+        public void MergeToPreviousData(JSONObject data)
+        {
+            dataToExecute.Merge(data);
+            if(eventToExecute==""||eventToExecute==null)
+                dataToExecute.GetField(ref eventToExecute, "eventName");
         }
     }
 }

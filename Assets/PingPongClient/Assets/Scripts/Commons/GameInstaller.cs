@@ -33,7 +33,7 @@ namespace Commons
                 AsSingle().
                 NonLazy();
 
-            Container.Bind(typeof(IFrameService), typeof(IFixedTickable)).
+            Container.Bind(typeof(IFrameService), typeof(IFixedTickable),typeof(IInitializable)).
                 To<FrameService>().
                 AsSingle().
                 NonLazy();

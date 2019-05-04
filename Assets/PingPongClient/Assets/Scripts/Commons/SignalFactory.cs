@@ -1,17 +1,20 @@
 ﻿using System;
 using Zenject;
 using MultiplayerSystem;
+using UnityEngine;
+
 namespace Commons
 {
     public static class SignalFactory
     {
         public static SignalBus signalBus;      
-        public static void FireSignal(string eventToEmit, JSONObject dataToSend )
+        public static void FireSignal(string eventToEmit, JSONObject dataToSend)
         {
             switch (eventToEmit)
             {
                 case ServerEvents.ON_MOVE_FORWARD:
                     signalBus.TryFire(new OnMoveForwardSignal(dataToSend));
+                    Debug.Log("signal move forward fired");
                     break;
                 case ServerEvents.ON_MOVE_BACKWARD:
                     signalBus.TryFire(new OnMoveBackwardSignal(dataToSend));

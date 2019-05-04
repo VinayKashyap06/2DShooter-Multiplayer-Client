@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Commons;
 using Zenject;
+using FrameSaveSystem;
 
 namespace MultiplayerSystem
 {
@@ -10,10 +11,14 @@ namespace MultiplayerSystem
     {
         private SignalBus signalBus;
         private IMultiplayerController multiplayerController;
-        public MultiplayerService(SignalBus signalBus)
+        IWorldSaveService worldSaveService;
+        IFrameService frameService;
+        public MultiplayerService(IWorldSaveService worldSaveService,IFrameService frameService,SignalBus signalBus)
         {
             this.signalBus = signalBus;
             SignalFactory.signalBus = signalBus;
+            this.worldSaveService = worldSaveService;
+            this.frameService = frameService;
         }
 
         public void Initialize()
@@ -24,6 +29,7 @@ namespace MultiplayerSystem
 
             multiplayerController = controller.GetComponent<IMultiplayerController>();
             multiplayerController.SetSignalBus(signalBus);
+            multiplayerController.SetupServices(worldSaveService, frameService);
         }
 
 
