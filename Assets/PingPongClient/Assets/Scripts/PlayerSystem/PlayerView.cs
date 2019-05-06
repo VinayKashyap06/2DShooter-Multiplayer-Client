@@ -12,7 +12,8 @@ namespace PlayerSystem
           
 
         public void OnMoveForward(Vector3 newPosition)
-        {            
+        {
+            Debug.Log("OnMoveForward Signal");
             transform.position = Vector3.Lerp(transform.position, newPosition, 1);        
         }
         public void OnMoveBackward(Vector3 newPosition)

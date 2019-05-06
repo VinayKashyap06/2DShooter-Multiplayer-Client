@@ -15,8 +15,9 @@ namespace MultiplayerSystem
         }
         public Vector3 GetNewPosition()
         {
+            JSONObject dataObj = data.GetField("data");
             Vector3 pos = Vector3.zero;
-            JSONObject positionObj = data.GetField("newPosition");
+            JSONObject positionObj = dataObj.GetField("data").GetField("newPosition");
             positionObj.GetField(ref pos.x, "x");
             positionObj.GetField(ref pos.y, "y");
             positionObj.GetField(ref pos.z, "z");
@@ -25,8 +26,9 @@ namespace MultiplayerSystem
 
         public string GetPlayerID()
         {
+            JSONObject dataObj = data.GetField("data");
             string id = "";
-            data.GetField(ref id, "playerID");
+            dataObj.GetField("data").GetField(ref id, "playerID");
             return id;
         }
     }

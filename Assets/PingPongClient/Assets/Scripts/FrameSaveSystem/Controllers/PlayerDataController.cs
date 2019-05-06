@@ -18,7 +18,7 @@ namespace FrameSaveSystem
 
         public void Execute()
         {
-            Debug.Log("execute called for player data controller");
+            Debug.Log("execute called for player data controller==> event to execute"+eventToExecute+ "date to execute"+dataToExecute);
             SignalFactory.FireSignal(eventToExecute, dataToExecute);
         }
 
@@ -31,9 +31,15 @@ namespace FrameSaveSystem
 
         public void MergeToPreviousData(JSONObject data)
         {
+            //Debug.Log("Merging data [player data controller]" );
             dataToExecute.Merge(data);
-            if(eventToExecute==""||eventToExecute==null)
-                dataToExecute.GetField(ref eventToExecute, "eventName");
+            Debug.Log("Merging data [player data controller]" + dataToExecute);
+
+            if (eventToExecute == "" || eventToExecute == null)
+            {
+                dataToExecute.GetField("data").GetField(ref eventToExecute,"eventName");
+                Debug.Log("event to execute set" + eventToExecute);
+            }
         }
     }
 }

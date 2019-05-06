@@ -13,8 +13,8 @@ namespace Commons
             switch (eventToEmit)
             {
                 case ServerEvents.ON_MOVE_FORWARD:
-                    signalBus.TryFire(new OnMoveForwardSignal(dataToSend));
                     Debug.Log("signal move forward fired");
+                    signalBus.TryFire(new OnMoveForwardSignal(dataToSend));
                     break;
                 case ServerEvents.ON_MOVE_BACKWARD:
                     signalBus.TryFire(new OnMoveBackwardSignal(dataToSend));
