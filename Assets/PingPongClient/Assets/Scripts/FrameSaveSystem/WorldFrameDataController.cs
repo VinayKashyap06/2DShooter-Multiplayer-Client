@@ -15,7 +15,7 @@ namespace FrameSaveSystem
 
         public void Execute()
         {
-            Debug.Log("Execute called for World frame controller");
+            //Debug.Log("Execute called for World frame controller");
             List<string> playerKeys = new List<string>();
             playerKeys = playerDataControllers.Keys.ToList();
             List<string> bulletKeys = new List<string>();
@@ -32,7 +32,7 @@ namespace FrameSaveSystem
 
         public void MergeToPreviousData(JSONObject data)
         {
-            Debug.Log("merge to previous daata called " + data);
+           // Debug.Log("merge to previous daata called " + data);
             foreach(PlayerDataController item in playerDataControllers.Values.ToList())
             {
                 item.MergeToPreviousData(data);

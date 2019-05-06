@@ -9,5 +9,6 @@ namespace PlayerSystem
         void SpawnView(PlayerView playerView, Vector3 position);
         string GetID();
         void SetSignalBus(SignalBus signalBus);
+        void DestroyPlayer();
     }
 }

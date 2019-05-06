@@ -13,12 +13,17 @@ namespace PlayerSystem
 
         public void OnMoveForward(Vector3 newPosition)
         {
-            Debug.Log("OnMoveForward Signal");
+            //Debug.Log("OnMoveForward Signal");
             transform.position = Vector3.Lerp(transform.position, newPosition, 1);        
         }
         public void OnMoveBackward(Vector3 newPosition)
         {            
             transform.position = Vector3.Lerp(transform.position, newPosition, 1);        
+        }
+
+        public void DestroySelf()
+        {
+            Destroy(this.gameObject);
         }
     }
 }

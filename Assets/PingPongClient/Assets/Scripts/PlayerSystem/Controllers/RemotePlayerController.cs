@@ -34,6 +34,10 @@ namespace PlayerSystem
         {
             Debug.Log("remote move forward");
             thisPlayerView.OnMoveForward(position);
-        }      
+        }
+        public override void DestroyPlayer()
+        {
+            thisPlayerView.DestroySelf();
+        }
     }
 }

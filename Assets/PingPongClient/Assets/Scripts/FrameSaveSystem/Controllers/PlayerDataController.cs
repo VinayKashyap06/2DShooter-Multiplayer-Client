@@ -18,7 +18,7 @@ namespace FrameSaveSystem
 
         public void Execute()
         {
-            Debug.Log("execute called for player data controller==> event to execute"+eventToExecute+ "date to execute"+dataToExecute);
+           // Debug.Log("execute called for player data controller==> event to execute"+eventToExecute+ "date to execute"+dataToExecute);
             SignalFactory.FireSignal(eventToExecute, dataToExecute);
         }
 
@@ -33,12 +33,12 @@ namespace FrameSaveSystem
         {
             //Debug.Log("Merging data [player data controller]" );
             dataToExecute.Merge(data);
-            Debug.Log("Merging data [player data controller]" + dataToExecute);
+           // Debug.Log("Merging data [player data controller]" + dataToExecute);
 
             if (eventToExecute == "" || eventToExecute == null)
             {
                 dataToExecute.GetField("data").GetField(ref eventToExecute,"eventName");
-                Debug.Log("event to execute set" + eventToExecute);
+              //  Debug.Log("event to execute set" + eventToExecute);
             }
         }
     }

@@ -38,6 +38,10 @@ namespace PlayerSystem
         {
             Debug.Log("local move forward");
             thisPlayerView.OnMoveForward(position);
-        }     
+        }
+        public override void DestroyPlayer()
+        {
+            thisPlayerView.DestroySelf();
+        }
     }
 }

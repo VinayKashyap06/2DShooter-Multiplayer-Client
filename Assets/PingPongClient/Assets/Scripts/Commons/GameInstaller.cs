@@ -20,6 +20,7 @@ namespace Commons
             Container.DeclareSignal<OnMoveBackwardSignal>();
             Container.DeclareSignal<OnOpponentConnectedSignal>();
             Container.DeclareSignal<OnUserConnectedSignal>();
+            Container.DeclareSignal<OnUserDisconnectedSignal>();
 
 
             //Bind Services
@@ -33,7 +34,7 @@ namespace Commons
                 AsSingle().
                 NonLazy();
 
-            Container.Bind(typeof(IFrameService), typeof(IFixedTickable),typeof(IInitializable)).
+            Container.Bind(typeof(IFrameService), typeof(IFixedTickable)).
                 To<FrameService>().
                 AsSingle().
                 NonLazy();

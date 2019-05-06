@@ -13,9 +13,8 @@ namespace FrameSaveSystem
         
         
         public void ExecuteFrame(int frameCount)
-        {
-            // TimeSpan timeSpan = new TimeSpan(dateTime.Ticks);
-            Debug.Log("<color=blue>Executing frame </color>" + frameCount);
+        {           
+           // Debug.Log("<color=blue>Executing frame </color>" + frameCount);
         
             if (frameDataDict.ContainsKey(frameCount))
             {
@@ -33,7 +32,7 @@ namespace FrameSaveSystem
             }
             else
             {
-                Debug.Log("<color=green>Adding keys</color>" + frameNo);
+                //Debug.Log("<color=green>Adding keys</color>" + frameNo);
                 IWorldFrameDataController worldFrameDataController = new WorldFrameDataController();
                 worldFrameDataController.SetupControllerData(data);
                 frameDataDict.Add(frameNo, worldFrameDataController);

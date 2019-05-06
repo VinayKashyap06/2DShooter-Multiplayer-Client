@@ -7,6 +7,12 @@ namespace PlayerSystem
     public class PlayerControllerBase : IPlayerController
     {
         public SignalBus signalBus;
+
+        public virtual void DestroyPlayer()
+        {
+           
+        }
+
         public virtual string GetID()
         {
             return "";

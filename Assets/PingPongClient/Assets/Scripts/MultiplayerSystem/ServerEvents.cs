@@ -10,6 +10,7 @@ namespace MultiplayerSystem
     {
         #region EventsToListen
         public const string ON_USER_CONNECTED = "onUserConnected";
+        public const string ON_USER_DISCONNECTED = "onUserDisconnected";
         public const string ON_OPPONENT_CONNECTED = "onOpponentConnected";
         public const string ON_MOVE_FORWARD = "onMoveForward";
         public const string ON_MOVE_BACKWARD = "onMoveBackward";

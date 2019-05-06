@@ -21,10 +21,37 @@ namespace PlayerSystem
             this.playerScriptableObj = playerScriptableObject;
             opponentScriptableObj = opponentScriptableObject;
             signalBus.Subscribe<OnUserConnectedSignal>(OnLocalUserConnected);
+            signalBus.Subscribe<OnUserDisconnectedSignal>(OnUserDisconnected);
             signalBus.Subscribe<OnOpponentConnectedSignal>(OnRemoteUserConnected);
             signalBus.Subscribe<OnMoveBackwardSignal>(OnMoveBackward);
             signalBus.Subscribe<OnMoveForwardSignal>(OnMoveForward);
         }
+
+        private void OnUserDisconnected(OnUserDisconnectedSignal onUserDisconnectedSignal)
+        {
+            Debug.Log("Destroying player"+onUserDisconnectedSignal.GetPlayerID());
+            if (onUserDisconnectedSignal.GetPlayerID() == localPlayerID)
+            {
+                localPlayerController.DestroyPlayer();
+                localPlayerController = null;
+            }
+            else
+            {
+                int indexToRemove = 0;
+                foreach (RemotePlayerController remotePlayer in remotePlayerControllerList )
+                {
+                    if (remotePlayer.GetID() == onUserDisconnectedSignal.GetPlayerID())
+                    {
+                        Debug.Log("Destroying remote player" );
+                        remotePlayer.DestroyPlayer();
+                        indexToRemove= remotePlayerControllerList.IndexOf(remotePlayer);
+                        break;
+                    }
+                }
+                remotePlayerControllerList.RemoveAt(indexToRemove);
+            }
+        }
+            
 
         private void OnRemoteUserConnected(OnOpponentConnectedSignal onOpponentConnectedSignal)
         {

@@ -24,8 +24,11 @@ namespace MultiplayerSystem
         {        
             On(ServerEvents.ON_USER_CONNECTED, OnUserConnected);
             On(ServerEvents.ON_OPPONENT_CONNECTED, OnOpponentConnected);
+            On(ServerEvents.ON_USER_DISCONNECTED, OnUserDisconnected);
             On(ServerEvents.ON_ADD_FRAME_DATA, OnAddFrameData);
         }
+
+        private void OnUserDisconnected(SocketIOEvent socketIOEvent)=> signalBus.TryFire(new OnUserDisconnectedSignal(socketIOEvent.data));
 
         private void OnAddFrameData(SocketIOEvent socketIOEvent)
         {
@@ -61,7 +64,7 @@ namespace MultiplayerSystem
         {
             JSONObject dataToSend = new JSONObject();
             dataToSend.AddField("frameNo",frameService.GetFrameCount());
-            Debug.Log("sending data "+ dataToSend);
+          //  Debug.Log("sending data "+ dataToSend);
             SendDataToServer(ServerEvents.MOVE_FORWARD, dataToSend);
         }
     }
