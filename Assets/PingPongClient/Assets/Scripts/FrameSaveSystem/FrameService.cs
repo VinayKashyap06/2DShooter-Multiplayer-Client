@@ -18,7 +18,7 @@ namespace FrameSaveSystem
         {
             //Debug.Log("deltaTime" +Time.deltaTime*1000);          
             worldSaveService.ExecuteFrame(frameCount);
-            frameCount++;
+            frameCount++;            
         }
 
         public int GetFrameCount()
