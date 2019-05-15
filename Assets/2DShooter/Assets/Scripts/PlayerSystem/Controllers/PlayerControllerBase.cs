@@ -13,6 +13,11 @@ namespace PlayerSystem
            
         }
 
+        public virtual Vector3 GetCurrentPosition()
+        {
+            return Vector3.zero;
+        }
+
         public virtual string GetID()
         {
             return "";

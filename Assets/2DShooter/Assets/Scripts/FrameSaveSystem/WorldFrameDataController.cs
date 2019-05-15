@@ -22,6 +22,7 @@ namespace FrameSaveSystem
             bulletKeys = playerDataControllers.Keys.ToList();
             for (int i = 0; i < playerKeys.Count; i++)
             {
+               
                 playerDataControllers[playerKeys[i]].Execute();
             }
             //for (int j = 0; j < bulletKeys.Count; j++)

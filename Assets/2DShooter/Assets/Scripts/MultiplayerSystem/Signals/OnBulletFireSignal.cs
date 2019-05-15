@@ -12,22 +12,28 @@ namespace MultiplayerSystem
             this.data = data.GetField("data").GetField("data");
             Debug.Log("data in data" + this.data);
         }
-        public Vector3 GetVelocity()
+        public Vector3 GetBulletPosition()
         {
-            JSONObject velocityData=data.GetField("velocity");
-            Vector3 velocity = Vector3.zero;
-            Debug.Log("velocitydata" + velocityData);
-            velocityData.GetField(ref velocity.x, "x");
-            velocity.y = 0;
-            velocityData.GetField(ref velocity.z, "y");
-            Debug.Log("Velocity of bullet spawned "+velocity);
-            return velocity;
+            JSONObject positionData=data.GetField("position");
+            Vector3 position = Vector3.zero;           
+            positionData.GetField(ref position.x, "x");
+            position.y = 0;
+            positionData.GetField(ref position.z, "y");
+            Debug.Log("<color=red>bullet position</color>" + position);
+            return position;
         }
         public string GetPlayerID()
         {
             string id = "";
             data.GetField(ref id, "playerID");
             return id;
+        }
+        public float GetBulletSpeed()
+        {
+            float speed = 0;
+            data.GetField(ref speed,"bulletSpeed");
+            Debug.Log("<color=red>bullet speed</color>" + speed);
+            return speed;
         }
     }
 }

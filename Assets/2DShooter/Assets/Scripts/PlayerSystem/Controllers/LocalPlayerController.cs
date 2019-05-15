@@ -47,5 +47,9 @@ namespace PlayerSystem
         {
             thisPlayerView.SpawnBullet(velocity);
         }
+        public override Vector3 GetCurrentPosition()
+        {
+            return thisPlayerView.GetCurrentPosition();
+        }
     }
 }

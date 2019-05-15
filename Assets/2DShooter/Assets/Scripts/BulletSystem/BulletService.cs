@@ -8,16 +8,19 @@ namespace BulletSystem
 {
     public class BulletService : IBulletService
     {
-        private ObjectPooling<BulletView> pool;
+        private ObjectPooling<BulletController> pool;
         private BulletView bulletPrefab;
         public BulletService(BulletScriptableObject bulletScriptableObject)
         {
-           pool = new ObjectPooling<BulletView>();
-            bulletPrefab = bulletScriptableObject.bulletView;
-        }
-        public void SpawnBullet()
+           pool = new ObjectPooling<BulletController>();
+           bulletPrefab = bulletScriptableObject.bulletView;
+        }        
+
+        public void SpawnBullet(Vector3 position, float speed)
         {
-            
+            BulletController bulletController = pool.Get<BulletController>();     
+            bulletController.SpawnBullet(position, speed,bulletPrefab);
+
         }
     }
 }

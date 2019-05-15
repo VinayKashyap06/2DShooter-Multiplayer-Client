@@ -5,6 +5,7 @@ using MultiplayerSystem;
 using InputSystem;
 using PlayerSystem;
 using FrameSaveSystem;
+using BulletSystem;
 
 namespace Commons
 {
@@ -51,10 +52,10 @@ namespace Commons
                 AsSingle().
                 NonLazy();
 
-            //Container.Bind(typeof(SignalFactory)).
-            //    To(typeof(SignalFactory)).
-            //    AsSingle().
-            //    NonLazy();
+            Container.Bind<IBulletService>().
+                To<BulletService>().
+                AsSingle().
+                NonLazy();
 
         }
     }

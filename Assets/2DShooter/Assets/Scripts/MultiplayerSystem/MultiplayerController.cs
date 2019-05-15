@@ -63,6 +63,7 @@ namespace MultiplayerSystem
             JSONObject dataToSend = new JSONObject();
             dataToSend.AddField("frameNo",frameService.GetFrameCount());
           //  Debug.Log("sending data "+ dataToSend);
+            
             SendDataToServer(ServerEvents.MOVE_FORWARD, dataToSend);
         }
         private void FireBullet()

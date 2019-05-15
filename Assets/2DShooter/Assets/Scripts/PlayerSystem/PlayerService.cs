@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using MultiplayerSystem;
 using Zenject;
+using BulletSystem;
 using ScriptableObjects;
 
 namespace PlayerSystem
@@ -15,8 +16,10 @@ namespace PlayerSystem
         private List<IPlayerController> remotePlayerControllerList = new List<IPlayerController>();
         private PlayerScriptableObject playerScriptableObj;
         private OpponentScriptableObject opponentScriptableObj;
-        public PlayerService(SignalBus signalBus, PlayerScriptableObject playerScriptableObject, OpponentScriptableObject opponentScriptableObject)
+        private IBulletService bulletService;
+        public PlayerService(IBulletService bulletService, SignalBus signalBus, PlayerScriptableObject playerScriptableObject, OpponentScriptableObject opponentScriptableObject)
         {
+            this.bulletService = bulletService;
             this.signalBus = signalBus;
             this.playerScriptableObj = playerScriptableObject;
             opponentScriptableObj = opponentScriptableObject;
@@ -31,16 +34,18 @@ namespace PlayerSystem
         private void OnBulletFired(OnBulletFireSignal onBulletFireSignal)
         {
             Debug.Log("on bullet fired called");
-            string id = onBulletFireSignal.GetPlayerID();
-            Vector3 velocity = onBulletFireSignal.GetVelocity();
-            if (id == localPlayerID)
-            {
-                localPlayerController.SpawnBullet(velocity);
-            }
-            else
-            {
-                remotePlayerControllerList[GetRemotePlayerIndex(id)].SpawnBullet(velocity);
-            }
+          //  string id = onBulletFireSignal.GetPlayerID();
+            Vector3 position = onBulletFireSignal.GetBulletPosition();
+            float speed = onBulletFireSignal.GetBulletSpeed();
+            bulletService.SpawnBullet(position,speed);
+            //if (id == localPlayerID)
+            //{
+            //    localPlayerController.SpawnBullet(position);
+            //}
+            //else
+            //{
+            //    //remotePlayerControllerList[GetRemotePlayerIndex(id)].SpawnBullet(position);
+            //}
         }
 
         private void OnUserDisconnected(OnUserDisconnectedSignal onUserDisconnectedSignal)
@@ -53,17 +58,8 @@ namespace PlayerSystem
             }
             else
             {
-                int indexToRemove = 0;
-                foreach (RemotePlayerController remotePlayer in remotePlayerControllerList)
-                {
-                    if (remotePlayer.GetID() == onUserDisconnectedSignal.GetPlayerID())
-                    {
-                        Debug.Log("Destroying remote player");
-                        remotePlayer.DestroyPlayer();
-                        indexToRemove = remotePlayerControllerList.IndexOf(remotePlayer);
-                        break;
-                    }
-                }
+                int indexToRemove = GetRemotePlayerIndex(onUserDisconnectedSignal.GetPlayerID());
+                remotePlayerControllerList[indexToRemove].DestroyPlayer();                
                 remotePlayerControllerList.RemoveAt(indexToRemove);
             }
         }
@@ -87,14 +83,7 @@ namespace PlayerSystem
         {
             if (onMoveForwardSignal.GetPlayerID() != localPlayerID)
             {
-                foreach (RemotePlayerController item in remotePlayerControllerList)
-                {
-                    if (item.GetID() == onMoveForwardSignal.GetPlayerID())
-                    {
-                        item.MoveForward(onMoveForwardSignal.GetNewPosition());
-                        return;
-                    }
-                }
+                remotePlayerControllerList[GetRemotePlayerIndex(onMoveForwardSignal.GetPlayerID())].MoveForward(onMoveForwardSignal.GetNewPosition());
             }
             else
             {
@@ -105,18 +94,11 @@ namespace PlayerSystem
         {
             if (onMoveBackwardSignal.GetPlayerID() != localPlayerID)
             {
-                foreach (RemotePlayerController item in remotePlayerControllerList)
-                {
-                    if (item.GetID() == onMoveBackwardSignal.GetPlayerID())
-                    {
-                        item.MoveForward(onMoveBackwardSignal.GetNewPosition());
-                        return;
-                    }
-                }
+                remotePlayerControllerList[GetRemotePlayerIndex(onMoveBackwardSignal.GetPlayerID())].MoveBackward(onMoveBackwardSignal.GetNewPosition());                
             }
             else
             {
-                localPlayerController.MoveForward(onMoveBackwardSignal.GetNewPosition());
+                localPlayerController.MoveBackward(onMoveBackwardSignal.GetNewPosition());
             }
         }
 

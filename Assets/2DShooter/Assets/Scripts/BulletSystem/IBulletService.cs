@@ -6,6 +6,6 @@ namespace BulletSystem
 {
     public interface IBulletService
     {
-        void SpawnBullet();
+        void SpawnBullet(Vector3 position, float speed);
     }
 }
