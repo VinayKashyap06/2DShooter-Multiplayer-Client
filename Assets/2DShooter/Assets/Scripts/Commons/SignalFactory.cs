@@ -29,7 +29,8 @@ namespace Commons
                 case ServerEvents.ON_OPPONENT_CONNECTED:
                     signalBus.TryFire(new OnOpponentConnectedSignal(dataToSend));
                     break;
-                case ServerEvents.ON_PLAYER_JUMP:
+                case ServerEvents.ON_FIRE:
+                    signalBus.TryFire(new OnBulletFireSignal(dataToSend));
                     break;
             
             }

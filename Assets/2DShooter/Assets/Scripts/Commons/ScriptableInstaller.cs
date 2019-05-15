@@ -9,10 +9,12 @@ namespace Commons
     {
         public PlayerScriptableObject playerScriptableObject;
         public OpponentScriptableObject opponentScriptableObject;
+        public BulletScriptableObject bulletScriptableObject;
         public override void InstallBindings()
         {
             Container.BindInstances(playerScriptableObject);
             Container.BindInstances(opponentScriptableObject);
+            Container.BindInstances(bulletScriptableObject);
         }
     }
 }

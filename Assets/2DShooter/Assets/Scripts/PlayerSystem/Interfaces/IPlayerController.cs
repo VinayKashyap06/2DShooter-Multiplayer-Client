@@ -10,5 +10,6 @@ namespace PlayerSystem
         string GetID();
         void SetSignalBus(SignalBus signalBus);
         void DestroyPlayer();
+        void SpawnBullet(Vector3 velocity);
     }
 }

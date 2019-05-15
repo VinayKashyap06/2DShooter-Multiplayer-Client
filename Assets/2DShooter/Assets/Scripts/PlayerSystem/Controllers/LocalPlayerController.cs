@@ -43,5 +43,9 @@ namespace PlayerSystem
         {
             thisPlayerView.DestroySelf();
         }
+        public override void SpawnBullet(Vector3 velocity)
+        {
+            thisPlayerView.SpawnBullet(velocity);
+        }
     }
 }

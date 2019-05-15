@@ -33,6 +33,11 @@ namespace PlayerSystem
             this.signalBus = signalBus;            
         }
 
+        public virtual void SpawnBullet(Vector3 velocity)
+        {
+           
+        }
+
         public virtual void SpawnView(PlayerView playerView,Vector3 position)
         {
             

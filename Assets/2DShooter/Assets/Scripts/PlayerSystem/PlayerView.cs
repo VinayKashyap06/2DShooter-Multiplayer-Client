@@ -8,9 +8,7 @@ using System;
 namespace PlayerSystem
 {
     public class PlayerView : MonoBehaviour
-    {
-          
-
+    {          
         public void OnMoveForward(Vector3 newPosition)
         {
             //Debug.Log("OnMoveForward Signal");
@@ -24,6 +22,14 @@ namespace PlayerSystem
         public void DestroySelf()
         {
             Destroy(this.gameObject);
+        }
+        public void SpawnBullet(Vector3 velocity)
+        {
+            Debug.Log("spawn bullet called");
+        }
+        public Vector3 GetCurrentPosition()
+        {
+            return this.transform.position;
         }
     }
 }

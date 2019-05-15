@@ -18,6 +18,7 @@ namespace MultiplayerSystem
         public const string ON_MOVE_RIGHT = "onMoveRight";
         public const string ON_PLAYER_JUMP = "onPlayerJump";
         public const string ON_ADD_FRAME_DATA = "onAddFrameData";
+        public const string ON_FIRE = "onFire";
         #endregion
 
         #region EventsToEmit
@@ -25,6 +26,7 @@ namespace MultiplayerSystem
         public const string MOVE_BACKWARD = "moveBackward";
         public const string MOVE_LEFT = "moveLeft";
         public const string MOVE_RIGHT= "moveRight";
+        public const string FIRE= "fire";
         #endregion
     }
 }

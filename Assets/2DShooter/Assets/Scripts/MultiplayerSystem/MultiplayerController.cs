@@ -35,20 +35,18 @@ namespace MultiplayerSystem
            // Debug.Log("incoming data" + socketIOEvent.data);
             int frameNo = 0;
             socketIOEvent.data.GetField(ref frameNo,"frameNo");
-//            Debug.Log("frame no received" +frameNo);
             worldSaveService.AddFrameData(frameNo, socketIOEvent.data);
         }
 
         private void OnUserConnected(SocketIOEvent socketIOEvent)=>    signalBus.TryFire(new OnUserConnectedSignal(socketIOEvent.data));        
-        private void OnOpponentConnected(SocketIOEvent socketIOEvent)=> signalBus.TryFire(new OnOpponentConnectedSignal(socketIOEvent.data));
-        //private void OnMoveBackward(SocketIOEvent socketIOEvent)=> signalBus.TryFire(new OnMoveBackwardSignal(socketIOEvent));
-        //private void OnMoveForward(SocketIOEvent socketIOEvent) =>   signalBus.TryFire(new OnMoveForwardSignal(socketIOEvent));  
+        private void OnOpponentConnected(SocketIOEvent socketIOEvent)=> signalBus.TryFire(new OnOpponentConnectedSignal(socketIOEvent.data));     
         
         public void SetSignalBus(SignalBus signalBus)
         {
             this.signalBus = signalBus;
             signalBus.Subscribe<MoveForwardSignal>(MoveForward);
             signalBus.Subscribe<MoveBackwardSignal>(()=> SendDataToServer(ServerEvents.MOVE_BACKWARD, new JSONObject()));
+            signalBus.Subscribe<FireSignal>(FireBullet);
         }
         public void SetupServices(IWorldSaveService worldSaveService, IFrameService frameService)
         {
@@ -66,6 +64,13 @@ namespace MultiplayerSystem
             dataToSend.AddField("frameNo",frameService.GetFrameCount());
           //  Debug.Log("sending data "+ dataToSend);
             SendDataToServer(ServerEvents.MOVE_FORWARD, dataToSend);
+        }
+        private void FireBullet()
+        {
+            JSONObject dataToSend = new JSONObject();
+            dataToSend.AddField("frameNo",frameService.GetFrameCount());
+            Debug.Log("sending fire data " + dataToSend);
+            SendDataToServer(ServerEvents.FIRE, dataToSend);
         }
     }
 }

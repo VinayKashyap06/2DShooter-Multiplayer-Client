@@ -21,6 +21,8 @@ namespace Commons
             Container.DeclareSignal<OnOpponentConnectedSignal>();
             Container.DeclareSignal<OnUserConnectedSignal>();
             Container.DeclareSignal<OnUserDisconnectedSignal>();
+            Container.DeclareSignal<OnBulletFireSignal>();
+            Container.DeclareSignal<FireSignal>();
 
 
             //Bind Services

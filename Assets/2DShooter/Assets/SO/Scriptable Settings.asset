@@ -16,3 +16,5 @@ MonoBehaviour:
     type: 2}
   opponentScriptableObject: {fileID: 11400000, guid: f7fdb655789cc314d807a33c2f2a528b,
     type: 2}
+  bulletScriptableObject: {fileID: 11400000, guid: 3de0236ed77b5364aa83261c10437a54,
+    type: 2}

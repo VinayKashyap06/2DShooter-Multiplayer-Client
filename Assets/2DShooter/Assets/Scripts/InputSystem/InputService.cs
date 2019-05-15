@@ -19,9 +19,14 @@ namespace InputSystem
             {
                 signalBus.TryFire(new MoveForwardSignal());
             }
-            else if(Input.GetAxis("Vertical") < 0f)
+            else if (Input.GetAxis("Vertical") < 0f)
             {
                 signalBus.TryFire(new MoveBackwardSignal());
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log("fire signal");
+                signalBus.TryFire(new FireSignal());
             }
         }
     }
