@@ -9,6 +9,7 @@ namespace BulletSystem
         private BulletView bulletView;                  
         public void SpawnBullet( Vector3 position, float speed, BulletView bulletPrefab)
         {
+            Debug.Log("spawning position " + position);
             GameObject bulletObj = GameObject.Instantiate(bulletPrefab.gameObject, position, Quaternion.identity);
             bulletView=bulletObj.GetComponent<BulletView>();
             bulletView.SetSpeed(speed);

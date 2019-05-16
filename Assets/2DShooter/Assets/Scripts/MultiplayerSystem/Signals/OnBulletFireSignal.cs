@@ -17,8 +17,8 @@ namespace MultiplayerSystem
             JSONObject positionData=data.GetField("position");
             Vector3 position = Vector3.zero;           
             positionData.GetField(ref position.x, "x");
-            position.y = 0;
-            positionData.GetField(ref position.z, "y");
+            positionData.GetField(ref position.y, "y");
+            position.z = 0;
             Debug.Log("<color=red>bullet position</color>" + position);
             return position;
         }

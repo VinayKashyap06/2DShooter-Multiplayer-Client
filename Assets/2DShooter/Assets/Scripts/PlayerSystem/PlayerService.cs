@@ -37,15 +37,7 @@ namespace PlayerSystem
           //  string id = onBulletFireSignal.GetPlayerID();
             Vector3 position = onBulletFireSignal.GetBulletPosition();
             float speed = onBulletFireSignal.GetBulletSpeed();
-            bulletService.SpawnBullet(position,speed);
-            //if (id == localPlayerID)
-            //{
-            //    localPlayerController.SpawnBullet(position);
-            //}
-            //else
-            //{
-            //    //remotePlayerControllerList[GetRemotePlayerIndex(id)].SpawnBullet(position);
-            //}
+            bulletService.SpawnBullet(position,speed);        
         }
 
         private void OnUserDisconnected(OnUserDisconnectedSignal onUserDisconnectedSignal)
